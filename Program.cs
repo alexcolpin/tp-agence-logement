@@ -150,6 +150,48 @@ public class Locataire
         Console.WriteLine($"ID: {id}, Nom: {nom}, Tel: {telephone}");
     }
 }
+
+public class ContratLocation
+{
+    private int numero;
+    private Locataire locataire;
+    private Logement logement;
+    private int nombreJours;
+    private double tarifJournalier;
+
+    public ContratLocation(int numero, Locataire locataire, Logement logement, int nombreJours)
+    {
+        if (nombreJours <= 0)
+        {
+            Console.WriteLine("Durée invalide !");
+            return;
+        }
+
+        if (!logement.EstDisponible())
+        {
+            Console.WriteLine("Logement déjà loué !");
+            return;
+        }
+
+        this.numero = numero;
+        this.locataire = locataire;
+        this.logement = logement;
+        this.nombreJours = nombreJours;
+        this.tarifJournalier = logement.CalculerLoyer();
+
+        logement.SetIndisponible();
+    }
+
+    public double CalculerMontantTotal()
+    {
+        return nombreJours * tarifJournalier;
+    }
+
+    public void Afficher()
+    {
+        Console.WriteLine($"Contrat {numero} - Montant: {CalculerMontantTotal()}€");
+    }
+}
 class Program
 {
     
