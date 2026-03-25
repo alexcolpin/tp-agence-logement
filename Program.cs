@@ -52,6 +52,30 @@ public class Logement
     }
 }
 
+public class Studio : Logement
+{
+    private bool meuble;
+
+    public Studio(string reference, string adresse, int surface, double loyerBase, bool meuble)
+        : base(reference, adresse, surface, loyerBase)
+    {
+        this.meuble = meuble;
+    }
+
+    public override double CalculerLoyer()
+    {
+        if (meuble)
+            return loyerBase + 50;
+        return loyerBase;
+    }
+
+    public override void Afficher()
+    {
+        base.Afficher();
+        Console.WriteLine($"Meublé: {meuble}");
+    }
+}
+
 class Program
 {
     
