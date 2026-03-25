@@ -1,6 +1,7 @@
 ﻿namespace tp_agence_logement;
 
 using System;
+using System.Collections.Generic;
 
 public class Logement
 {
