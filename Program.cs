@@ -195,9 +195,41 @@ public class ContratLocation
 }
 class Program
 {
-    
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        Studio s = new Studio("S1", "Paris", 20, 500, true);
+        Appartement a = new Appartement("A1", "Lyon", 60, 800, 3);
+        Maison m = new Maison("M1", "Lille", 100, 1200, 50);
+
+        Console.WriteLine("=== AFFICHAGE ===");
+        s.Afficher();
+        a.Afficher();
+        m.Afficher();
+
+        Console.WriteLine("\n=== LOYERS ===");
+        Console.WriteLine(s.CalculerLoyer());
+        Console.WriteLine(a.CalculerLoyer());
+        Console.WriteLine(m.CalculerLoyer());
+
+        // Polymorphisme
+        List<Logement> logements = new List<Logement>();
+        logements.Add(s);
+        logements.Add(a);
+        logements.Add(m);
+
+        Console.WriteLine("\n=== POLYMORPHISME ===");
+        foreach (Logement log in logements)
+        {
+            log.Afficher();
+            Console.WriteLine("Loyer: " + log.CalculerLoyer());
+        }
+
+        // Locataire
+        Locataire l1 = new Locataire(1, "Alice", "123");
+        l1.Afficher();
+
+        // Contrat
+        ContratLocation c1 = new ContratLocation(101, l1, s, 5);
+        c1.Afficher();
     }
 }
