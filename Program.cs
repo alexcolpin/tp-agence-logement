@@ -76,6 +76,62 @@ public class Studio : Logement
     }
 }
 
+public class Appartement : Logement
+{
+    private int nombrePieces;
+
+    public Appartement(string reference, string adresse, int surface, double loyerBase, int nombrePieces)
+        : base(reference, adresse, surface, loyerBase)
+    {
+        if (nombrePieces < 1)
+        {
+            Console.WriteLine("Nombre de pièces invalide !");
+            return;
+        }
+
+        this.nombrePieces = nombrePieces;
+    }
+
+    public override double CalculerLoyer()
+    {
+        return loyerBase + (100 * nombrePieces);
+    }
+
+    public override void Afficher()
+    {
+        base.Afficher();
+        Console.WriteLine($"Pièces: {nombrePieces}");
+    }
+}
+
+public class Maison : Logement
+{
+    private int surfaceJardin;
+
+    public Maison(string reference, string adresse, int surface, double loyerBase, int surfaceJardin)
+        : base(reference, adresse, surface, loyerBase)
+    {
+        if (surfaceJardin < 0)
+        {
+            Console.WriteLine("Surface jardin invalide !");
+            return;
+        }
+
+        this.surfaceJardin = surfaceJardin;
+    }
+
+    public override double CalculerLoyer()
+    {
+        return loyerBase + (10 * surfaceJardin);
+    }
+
+    public override void Afficher()
+    {
+        base.Afficher();
+        Console.WriteLine($"Jardin: {surfaceJardin}m²");
+    }
+}
+
 class Program
 {
     
